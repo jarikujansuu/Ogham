@@ -1,0 +1,1402 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="jcmag22.hd.free.fr/Public" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="jcmag22.hd.free.fr/Public" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="jcmag22.hd.free.fr/Public">
+      <s:element name="GetAllLeagues">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllLeaguesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllLeaguesResult" type="tns:ArrayOfLeagueEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfLeagueEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="LeagueEntity" nillable="true" type="tns:LeagueEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="LeagueEntity">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateCreated" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="CommissaireId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CreatedByName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Confidential" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="NbMatchs" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="NbTeams" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Url" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PointsSystemId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsMetaLeague" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="AddVirtualTD" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Finished" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="FTPFolder" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FTPLogin" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FTPPassword" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ImageHttp" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetTeamsInLeague">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="leagueId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTeamsInLeagueResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTeamsInLeagueResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetLeaguePlayers">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="leagueId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLeaguePlayersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="groupPlayers" type="tns:ArrayOfPlayerEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="groupTeams" type="tns:ArrayOfTeamEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPlayerEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PlayerEntity" nillable="true" type="tns:PlayerEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PlayerEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Stats" type="tns:PlayerStatsEntity" />
+          <s:element minOccurs="1" maxOccurs="1" name="SustainedTD" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="bDead" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="bEdited" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="bGenerated" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="bStar" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="BaseArmour" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="BaseMovement" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="BaseStrength" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="BaseAgility" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Characteristics_fAgility" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Characteristics_fArmourValue" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Characteristics_fMovementAllowance" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Characteristics_fStrength" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ModifMovement" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ModifStrength" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ModifAgility" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ModifArmour" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Contract_iDuration" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="Contract_iSeasonRemaining" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="fAgeing" nillable="true" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="idPlayer_Levels" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="idPlayer_Names" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="idPlayer_Types" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="idRaces" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="idTeam_Listing" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="iExperience" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="iMatchSuspended" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="iNbLevelsUp" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="iNumber" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="iSalary" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="iValue" nillable="true" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="Position" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="strLevelUp" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="strName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TeamName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CoachName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CasualtyType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Skills" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="BaseSkills" type="tns:ArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PlayerStatsEntity">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="XP" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastMatchXP" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="idPlayer_Listing" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="iMatchPlayed" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="iMVP" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="Inflicted_iCasualties" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="Inflicted_iCatches" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="Inflicted_iDead" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="Inflicted_iInjuries" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="Inflicted_iInterceptions" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="Inflicted_iKO" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="Inflicted_iMetersPassing" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="Inflicted_iMetersRunning" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="Inflicted_iPasses" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="Inflicted_iStuns" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="Inflicted_iTackles" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="Inflicted_iTouchdowns" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="Sustained_iCasualties" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="Sustained_iDead" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="Sustained_iInjuries" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="Sustained_iInterceptions" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="Sustained_iKO" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="Sustained_iStuns" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="Sustained_iTackles" nillable="true" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTeamEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TeamEntity" nillable="true" type="tns:TeamEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TeamEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CoachName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="RaceId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SustainedTD" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LeaguePoints" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LeagueMatchs" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LeagueVictories" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LeagueDraws" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LeagueDefeats" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LeagueXP" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LeagueTD" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="LeaguePasses" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="LeagueRecep" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="LeagueIntercep" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="LeagueKO" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="LeagueBlessures" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="LeagueMisesAuSol" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="LeagueDeads" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="LeagueYardCourse" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="LeagueYardPasse" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="LeagueSustainedMisesAuSol" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="bApothecary" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="iCash" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="iCheerleaders" nillable="true" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="strBackground" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="strLeitmotiv" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="iPopularity" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="iRerolls" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="iValue" nillable="true" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="ListTV" type="tns:ArrayOfLong" />
+          <s:element minOccurs="0" maxOccurs="1" name="ListXP" type="tns:ArrayOfLong" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfLong">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="long" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetPlayersInLeague">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="leagueId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPlayersInLeagueResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPlayersInLeagueResult" type="tns:ArrayOfPlayerEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetReplayData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="matchId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetReplayDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="homeSkillsEntityList" type="tns:ArrayOfPlayerSkillEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="awaySkillsEntityList" type="tns:ArrayOfPlayerSkillEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="netCommandList" type="tns:ArrayOfNetCommandEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="homePlayerListing" type="tns:ArrayOfPlayerListingEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="awayPlayerListing" type="tns:ArrayOfPlayerListingEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="log" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPlayerSkillEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PlayerSkillEntity" nillable="true" type="tns:PlayerSkillEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PlayerSkillEntity">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="idPlayer_Listing" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="idSkill_Listing" nillable="true" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfNetCommandEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="NetCommandEntity" nillable="true" type="tns:NetCommandEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="NetCommandEntity">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="iPart1" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="iPart2" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="iPart3" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="iPart4" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="iPart5" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="iPart6" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="iPart7" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="iPart8" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="iPart9" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="iPart10" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="iPart11" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="iPart12" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="iPlayerIndex" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="iTurn" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="iType" nillable="true" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPlayerListingEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PlayerListingEntity" nillable="true" type="tns:PlayerListingEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PlayerListingEntity">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="idPlayer_Names" nillable="true" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="strName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="idPlayer_Types" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="idRaces" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="iNumber" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="iMatchSuspended" nillable="true" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetTeamPlayers">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="leagueId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="teamName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="language" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTeamPlayersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="groupPlayers" type="tns:ArrayOfPlayerEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="groupTeams" type="tns:ArrayOfTeamEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTeamsListing">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="matchId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTeamsListingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="homeTeam" type="tns:Home_Team_Listing" />
+            <s:element minOccurs="0" maxOccurs="1" name="awayTeam" type="tns:Away_Team_Listing" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Home_Team_Listing">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:EntityObject">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:long" />
+              <s:element minOccurs="0" maxOccurs="1" name="strName" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="idRaces" nillable="true" type="s:long" />
+              <s:element minOccurs="0" maxOccurs="1" name="strLogo" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="iTeamColor" nillable="true" type="s:long" />
+              <s:element minOccurs="0" maxOccurs="1" name="strLeitmotiv" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="strBackground" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="iValue" nillable="true" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="iPopularity" nillable="true" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="iCash" nillable="true" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="iCheerleaders" nillable="true" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="iBalms" nillable="true" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="bApothecary" nillable="true" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="iRerolls" nillable="true" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="bEdited" nillable="true" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="idTeam_Listing_Filters" nillable="true" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="idStrings_Formatted_Background" nillable="true" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="idStrings_Localized_Leitmotiv" nillable="true" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="iNextPurchase" nillable="true" type="s:long" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="EntityObject" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:StructuralObject">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="EntityKey" type="tns:EntityKey" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="StructuralObject" abstract="true" />
+      <s:complexType name="EntityKey">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="EntitySetName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EntityContainerName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EntityKeyValues" type="tns:ArrayOfEntityKeyMember" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfEntityKeyMember">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EntityKeyMember" nillable="true" type="tns:EntityKeyMember" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EntityKeyMember">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Key" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Away_Team_Listing">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:EntityObject">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:long" />
+              <s:element minOccurs="0" maxOccurs="1" name="strName" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="idRaces" nillable="true" type="s:long" />
+              <s:element minOccurs="0" maxOccurs="1" name="strLogo" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="iTeamColor" nillable="true" type="s:long" />
+              <s:element minOccurs="0" maxOccurs="1" name="strLeitmotiv" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="strBackground" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="iValue" nillable="true" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="iPopularity" nillable="true" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="iCash" nillable="true" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="iCheerleaders" nillable="true" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="iBalms" nillable="true" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="bApothecary" nillable="true" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="iRerolls" nillable="true" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="bEdited" nillable="true" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="idTeam_Listing_Filters" nillable="true" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="idStrings_Formatted_Background" nillable="true" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="idStrings_Localized_Leitmotiv" nillable="true" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="iNextPurchase" nillable="true" type="s:long" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetLeaguePlayersStats">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="leagueId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="number" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PlayerStat">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Stat" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TeamName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="RaceId" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPlayerStat">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PlayerStat" nillable="true" type="tns:PlayerStat" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetLeaguePlayersStatsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="bestTD" type="tns:ArrayOfPlayerStat" />
+            <s:element minOccurs="0" maxOccurs="1" name="bestPasse" type="tns:ArrayOfPlayerStat" />
+            <s:element minOccurs="0" maxOccurs="1" name="bestInterception" type="tns:ArrayOfPlayerStat" />
+            <s:element minOccurs="0" maxOccurs="1" name="bestCatches" type="tns:ArrayOfPlayerStat" />
+            <s:element minOccurs="0" maxOccurs="1" name="bestYardsRun" type="tns:ArrayOfPlayerStat" />
+            <s:element minOccurs="0" maxOccurs="1" name="bestYardsPass" type="tns:ArrayOfPlayerStat" />
+            <s:element minOccurs="0" maxOccurs="1" name="bestInjuries" type="tns:ArrayOfPlayerStat" />
+            <s:element minOccurs="0" maxOccurs="1" name="bestViolent" type="tns:ArrayOfPlayerStat" />
+            <s:element minOccurs="0" maxOccurs="1" name="bestKiller" type="tns:ArrayOfPlayerStat" />
+            <s:element minOccurs="0" maxOccurs="1" name="bestPreneurCoup" type="tns:ArrayOfPlayerStat" />
+            <s:element minOccurs="0" maxOccurs="1" name="bestXP" type="tns:ArrayOfPlayerStat" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLeagueTeamsStats">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="leagueId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="number" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TeamStat">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Stat" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CoachName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="RaceId" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTeamStat">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TeamStat" nillable="true" type="tns:TeamStat" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetLeagueTeamsStatsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="bestTD" type="tns:ArrayOfTeamStat" />
+            <s:element minOccurs="0" maxOccurs="1" name="bestPasse" type="tns:ArrayOfTeamStat" />
+            <s:element minOccurs="0" maxOccurs="1" name="bestInterception" type="tns:ArrayOfTeamStat" />
+            <s:element minOccurs="0" maxOccurs="1" name="bestCatches" type="tns:ArrayOfTeamStat" />
+            <s:element minOccurs="0" maxOccurs="1" name="bestYardsRun" type="tns:ArrayOfTeamStat" />
+            <s:element minOccurs="0" maxOccurs="1" name="bestYardsPass" type="tns:ArrayOfTeamStat" />
+            <s:element minOccurs="0" maxOccurs="1" name="bestInjuries" type="tns:ArrayOfTeamStat" />
+            <s:element minOccurs="0" maxOccurs="1" name="bestViolent" type="tns:ArrayOfTeamStat" />
+            <s:element minOccurs="0" maxOccurs="1" name="bestKiller" type="tns:ArrayOfTeamStat" />
+            <s:element minOccurs="0" maxOccurs="1" name="bestPreneurCoup" type="tns:ArrayOfTeamStat" />
+            <s:element minOccurs="0" maxOccurs="1" name="bestXP" type="tns:ArrayOfTeamStat" />
+            <s:element minOccurs="0" maxOccurs="1" name="bestDefensor" type="tns:ArrayOfTeamStat" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetNbTeamsPerLeague">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="leagueId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetNbTeamsPerLeagueResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetNbTeamsPerLeagueResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLeagueId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="leagueName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLeagueIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetLeagueIdResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLeague">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="leagueId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLeagueResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLeagueResult" type="tns:LeagueEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsLeagueSupported">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsLeagueSupportedResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IsLeagueSupportedResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMatchsByLeague">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="leagueId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="LeagueMatch">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CoachA" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TeamA" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RaceA" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ScoreA" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CoachB" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TeamB" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RaceB" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ScoreB" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Day" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TVA" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="TVB" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="Date" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="RaceIdA" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="RaceIdB" nillable="true" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfLeagueMatch">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="LeagueMatch" nillable="true" type="tns:LeagueMatch" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetMatchsByLeagueResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMatchsByLeagueResult" type="tns:ArrayOfLeagueMatch" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetELORanking">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="EloRanking">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Coach" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Score" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="NbMatchs" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Rank" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="V" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="N" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="D" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastEvolution" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfEloRanking">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EloRanking" nillable="true" type="tns:EloRanking" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetELORankingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetELORankingResult" type="tns:ArrayOfEloRanking" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ArrayOfLeagueEntity" nillable="true" type="tns:ArrayOfLeagueEntity" />
+      <s:element name="ArrayOfString" nillable="true" type="tns:ArrayOfString" />
+      <s:element name="ArrayOfPlayerEntity" nillable="true" type="tns:ArrayOfPlayerEntity" />
+      <s:element name="int" type="s:int" />
+      <s:element name="LeagueEntity" nillable="true" type="tns:LeagueEntity" />
+      <s:element name="boolean" type="s:boolean" />
+      <s:element name="ArrayOfLeagueMatch" nillable="true" type="tns:ArrayOfLeagueMatch" />
+      <s:element name="ArrayOfEloRanking" nillable="true" type="tns:ArrayOfEloRanking" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetAllLeaguesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllLeagues" />
+  </wsdl:message>
+  <wsdl:message name="GetAllLeaguesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllLeaguesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTeamsInLeagueSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTeamsInLeague" />
+  </wsdl:message>
+  <wsdl:message name="GetTeamsInLeagueSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTeamsInLeagueResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLeaguePlayersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLeaguePlayers" />
+  </wsdl:message>
+  <wsdl:message name="GetLeaguePlayersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLeaguePlayersResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPlayersInLeagueSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPlayersInLeague" />
+  </wsdl:message>
+  <wsdl:message name="GetPlayersInLeagueSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPlayersInLeagueResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetReplayDataSoapIn">
+    <wsdl:part name="parameters" element="tns:GetReplayData" />
+  </wsdl:message>
+  <wsdl:message name="GetReplayDataSoapOut">
+    <wsdl:part name="parameters" element="tns:GetReplayDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTeamPlayersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTeamPlayers" />
+  </wsdl:message>
+  <wsdl:message name="GetTeamPlayersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTeamPlayersResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTeamsListingSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTeamsListing" />
+  </wsdl:message>
+  <wsdl:message name="GetTeamsListingSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTeamsListingResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLeaguePlayersStatsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLeaguePlayersStats" />
+  </wsdl:message>
+  <wsdl:message name="GetLeaguePlayersStatsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLeaguePlayersStatsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLeagueTeamsStatsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLeagueTeamsStats" />
+  </wsdl:message>
+  <wsdl:message name="GetLeagueTeamsStatsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLeagueTeamsStatsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetNbTeamsPerLeagueSoapIn">
+    <wsdl:part name="parameters" element="tns:GetNbTeamsPerLeague" />
+  </wsdl:message>
+  <wsdl:message name="GetNbTeamsPerLeagueSoapOut">
+    <wsdl:part name="parameters" element="tns:GetNbTeamsPerLeagueResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLeagueIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLeagueId" />
+  </wsdl:message>
+  <wsdl:message name="GetLeagueIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLeagueIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLeagueSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLeague" />
+  </wsdl:message>
+  <wsdl:message name="GetLeagueSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLeagueResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsLeagueSupportedSoapIn">
+    <wsdl:part name="parameters" element="tns:IsLeagueSupported" />
+  </wsdl:message>
+  <wsdl:message name="IsLeagueSupportedSoapOut">
+    <wsdl:part name="parameters" element="tns:IsLeagueSupportedResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMatchsByLeagueSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMatchsByLeague" />
+  </wsdl:message>
+  <wsdl:message name="GetMatchsByLeagueSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMatchsByLeagueResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetELORankingSoapIn">
+    <wsdl:part name="parameters" element="tns:GetELORanking" />
+  </wsdl:message>
+  <wsdl:message name="GetELORankingSoapOut">
+    <wsdl:part name="parameters" element="tns:GetELORankingResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllLeaguesHttpGetIn" />
+  <wsdl:message name="GetAllLeaguesHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfLeagueEntity" />
+  </wsdl:message>
+  <wsdl:message name="GetTeamsInLeagueHttpGetIn">
+    <wsdl:part name="leagueId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetTeamsInLeagueHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="GetPlayersInLeagueHttpGetIn">
+    <wsdl:part name="leagueId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPlayersInLeagueHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfPlayerEntity" />
+  </wsdl:message>
+  <wsdl:message name="GetNbTeamsPerLeagueHttpGetIn">
+    <wsdl:part name="leagueId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetNbTeamsPerLeagueHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="GetLeagueIdHttpGetIn">
+    <wsdl:part name="leagueName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetLeagueIdHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="GetLeagueHttpGetIn">
+    <wsdl:part name="leagueId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetLeagueHttpGetOut">
+    <wsdl:part name="Body" element="tns:LeagueEntity" />
+  </wsdl:message>
+  <wsdl:message name="IsLeagueSupportedHttpGetIn">
+    <wsdl:part name="id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IsLeagueSupportedHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="GetMatchsByLeagueHttpGetIn">
+    <wsdl:part name="leagueId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMatchsByLeagueHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfLeagueMatch" />
+  </wsdl:message>
+  <wsdl:message name="GetELORankingHttpGetIn">
+    <wsdl:part name="id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetELORankingHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfEloRanking" />
+  </wsdl:message>
+  <wsdl:message name="GetAllLeaguesHttpPostIn" />
+  <wsdl:message name="GetAllLeaguesHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfLeagueEntity" />
+  </wsdl:message>
+  <wsdl:message name="GetTeamsInLeagueHttpPostIn">
+    <wsdl:part name="leagueId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetTeamsInLeagueHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="GetPlayersInLeagueHttpPostIn">
+    <wsdl:part name="leagueId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPlayersInLeagueHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfPlayerEntity" />
+  </wsdl:message>
+  <wsdl:message name="GetNbTeamsPerLeagueHttpPostIn">
+    <wsdl:part name="leagueId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetNbTeamsPerLeagueHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="GetLeagueIdHttpPostIn">
+    <wsdl:part name="leagueName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetLeagueIdHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="GetLeagueHttpPostIn">
+    <wsdl:part name="leagueId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetLeagueHttpPostOut">
+    <wsdl:part name="Body" element="tns:LeagueEntity" />
+  </wsdl:message>
+  <wsdl:message name="IsLeagueSupportedHttpPostIn">
+    <wsdl:part name="id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IsLeagueSupportedHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="GetMatchsByLeagueHttpPostIn">
+    <wsdl:part name="leagueId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMatchsByLeagueHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfLeagueMatch" />
+  </wsdl:message>
+  <wsdl:message name="GetELORankingHttpPostIn">
+    <wsdl:part name="id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetELORankingHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfEloRanking" />
+  </wsdl:message>
+  <wsdl:portType name="PublicServiceSoap">
+    <wsdl:operation name="GetAllLeagues">
+      <wsdl:input message="tns:GetAllLeaguesSoapIn" />
+      <wsdl:output message="tns:GetAllLeaguesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTeamsInLeague">
+      <wsdl:input message="tns:GetTeamsInLeagueSoapIn" />
+      <wsdl:output message="tns:GetTeamsInLeagueSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLeaguePlayers">
+      <wsdl:input message="tns:GetLeaguePlayersSoapIn" />
+      <wsdl:output message="tns:GetLeaguePlayersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPlayersInLeague">
+      <wsdl:input message="tns:GetPlayersInLeagueSoapIn" />
+      <wsdl:output message="tns:GetPlayersInLeagueSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReplayData">
+      <wsdl:input message="tns:GetReplayDataSoapIn" />
+      <wsdl:output message="tns:GetReplayDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTeamPlayers">
+      <wsdl:input message="tns:GetTeamPlayersSoapIn" />
+      <wsdl:output message="tns:GetTeamPlayersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTeamsListing">
+      <wsdl:input message="tns:GetTeamsListingSoapIn" />
+      <wsdl:output message="tns:GetTeamsListingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLeaguePlayersStats">
+      <wsdl:input message="tns:GetLeaguePlayersStatsSoapIn" />
+      <wsdl:output message="tns:GetLeaguePlayersStatsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLeagueTeamsStats">
+      <wsdl:input message="tns:GetLeagueTeamsStatsSoapIn" />
+      <wsdl:output message="tns:GetLeagueTeamsStatsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNbTeamsPerLeague">
+      <wsdl:input message="tns:GetNbTeamsPerLeagueSoapIn" />
+      <wsdl:output message="tns:GetNbTeamsPerLeagueSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLeagueId">
+      <wsdl:input message="tns:GetLeagueIdSoapIn" />
+      <wsdl:output message="tns:GetLeagueIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLeague">
+      <wsdl:input message="tns:GetLeagueSoapIn" />
+      <wsdl:output message="tns:GetLeagueSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsLeagueSupported">
+      <wsdl:input message="tns:IsLeagueSupportedSoapIn" />
+      <wsdl:output message="tns:IsLeagueSupportedSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMatchsByLeague">
+      <wsdl:input message="tns:GetMatchsByLeagueSoapIn" />
+      <wsdl:output message="tns:GetMatchsByLeagueSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetELORanking">
+      <wsdl:input message="tns:GetELORankingSoapIn" />
+      <wsdl:output message="tns:GetELORankingSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="PublicServiceHttpGet">
+    <wsdl:operation name="GetAllLeagues">
+      <wsdl:input message="tns:GetAllLeaguesHttpGetIn" />
+      <wsdl:output message="tns:GetAllLeaguesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTeamsInLeague">
+      <wsdl:input message="tns:GetTeamsInLeagueHttpGetIn" />
+      <wsdl:output message="tns:GetTeamsInLeagueHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPlayersInLeague">
+      <wsdl:input message="tns:GetPlayersInLeagueHttpGetIn" />
+      <wsdl:output message="tns:GetPlayersInLeagueHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNbTeamsPerLeague">
+      <wsdl:input message="tns:GetNbTeamsPerLeagueHttpGetIn" />
+      <wsdl:output message="tns:GetNbTeamsPerLeagueHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLeagueId">
+      <wsdl:input message="tns:GetLeagueIdHttpGetIn" />
+      <wsdl:output message="tns:GetLeagueIdHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLeague">
+      <wsdl:input message="tns:GetLeagueHttpGetIn" />
+      <wsdl:output message="tns:GetLeagueHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsLeagueSupported">
+      <wsdl:input message="tns:IsLeagueSupportedHttpGetIn" />
+      <wsdl:output message="tns:IsLeagueSupportedHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMatchsByLeague">
+      <wsdl:input message="tns:GetMatchsByLeagueHttpGetIn" />
+      <wsdl:output message="tns:GetMatchsByLeagueHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetELORanking">
+      <wsdl:input message="tns:GetELORankingHttpGetIn" />
+      <wsdl:output message="tns:GetELORankingHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="PublicServiceHttpPost">
+    <wsdl:operation name="GetAllLeagues">
+      <wsdl:input message="tns:GetAllLeaguesHttpPostIn" />
+      <wsdl:output message="tns:GetAllLeaguesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTeamsInLeague">
+      <wsdl:input message="tns:GetTeamsInLeagueHttpPostIn" />
+      <wsdl:output message="tns:GetTeamsInLeagueHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPlayersInLeague">
+      <wsdl:input message="tns:GetPlayersInLeagueHttpPostIn" />
+      <wsdl:output message="tns:GetPlayersInLeagueHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNbTeamsPerLeague">
+      <wsdl:input message="tns:GetNbTeamsPerLeagueHttpPostIn" />
+      <wsdl:output message="tns:GetNbTeamsPerLeagueHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLeagueId">
+      <wsdl:input message="tns:GetLeagueIdHttpPostIn" />
+      <wsdl:output message="tns:GetLeagueIdHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLeague">
+      <wsdl:input message="tns:GetLeagueHttpPostIn" />
+      <wsdl:output message="tns:GetLeagueHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsLeagueSupported">
+      <wsdl:input message="tns:IsLeagueSupportedHttpPostIn" />
+      <wsdl:output message="tns:IsLeagueSupportedHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMatchsByLeague">
+      <wsdl:input message="tns:GetMatchsByLeagueHttpPostIn" />
+      <wsdl:output message="tns:GetMatchsByLeagueHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetELORanking">
+      <wsdl:input message="tns:GetELORankingHttpPostIn" />
+      <wsdl:output message="tns:GetELORankingHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PublicServiceSoap" type="tns:PublicServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAllLeagues">
+      <soap:operation soapAction="jcmag22.hd.free.fr/Public/GetAllLeagues" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTeamsInLeague">
+      <soap:operation soapAction="jcmag22.hd.free.fr/Public/GetTeamsInLeague" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLeaguePlayers">
+      <soap:operation soapAction="jcmag22.hd.free.fr/Public/GetLeaguePlayers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPlayersInLeague">
+      <soap:operation soapAction="jcmag22.hd.free.fr/Public/GetPlayersInLeague" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReplayData">
+      <soap:operation soapAction="jcmag22.hd.free.fr/Public/GetReplayData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTeamPlayers">
+      <soap:operation soapAction="jcmag22.hd.free.fr/Public/GetTeamPlayers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTeamsListing">
+      <soap:operation soapAction="jcmag22.hd.free.fr/Public/GetTeamsListing" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLeaguePlayersStats">
+      <soap:operation soapAction="jcmag22.hd.free.fr/Public/GetLeaguePlayersStats" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLeagueTeamsStats">
+      <soap:operation soapAction="jcmag22.hd.free.fr/Public/GetLeagueTeamsStats" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNbTeamsPerLeague">
+      <soap:operation soapAction="jcmag22.hd.free.fr/Public/GetNbTeamsPerLeague" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLeagueId">
+      <soap:operation soapAction="jcmag22.hd.free.fr/Public/GetLeagueId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLeague">
+      <soap:operation soapAction="jcmag22.hd.free.fr/Public/GetLeague" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsLeagueSupported">
+      <soap:operation soapAction="jcmag22.hd.free.fr/Public/IsLeagueSupported" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMatchsByLeague">
+      <soap:operation soapAction="jcmag22.hd.free.fr/Public/GetMatchsByLeague" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetELORanking">
+      <soap:operation soapAction="jcmag22.hd.free.fr/Public/GetELORanking" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PublicServiceSoap12" type="tns:PublicServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAllLeagues">
+      <soap12:operation soapAction="jcmag22.hd.free.fr/Public/GetAllLeagues" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTeamsInLeague">
+      <soap12:operation soapAction="jcmag22.hd.free.fr/Public/GetTeamsInLeague" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLeaguePlayers">
+      <soap12:operation soapAction="jcmag22.hd.free.fr/Public/GetLeaguePlayers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPlayersInLeague">
+      <soap12:operation soapAction="jcmag22.hd.free.fr/Public/GetPlayersInLeague" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReplayData">
+      <soap12:operation soapAction="jcmag22.hd.free.fr/Public/GetReplayData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTeamPlayers">
+      <soap12:operation soapAction="jcmag22.hd.free.fr/Public/GetTeamPlayers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTeamsListing">
+      <soap12:operation soapAction="jcmag22.hd.free.fr/Public/GetTeamsListing" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLeaguePlayersStats">
+      <soap12:operation soapAction="jcmag22.hd.free.fr/Public/GetLeaguePlayersStats" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLeagueTeamsStats">
+      <soap12:operation soapAction="jcmag22.hd.free.fr/Public/GetLeagueTeamsStats" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNbTeamsPerLeague">
+      <soap12:operation soapAction="jcmag22.hd.free.fr/Public/GetNbTeamsPerLeague" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLeagueId">
+      <soap12:operation soapAction="jcmag22.hd.free.fr/Public/GetLeagueId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLeague">
+      <soap12:operation soapAction="jcmag22.hd.free.fr/Public/GetLeague" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsLeagueSupported">
+      <soap12:operation soapAction="jcmag22.hd.free.fr/Public/IsLeagueSupported" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMatchsByLeague">
+      <soap12:operation soapAction="jcmag22.hd.free.fr/Public/GetMatchsByLeague" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetELORanking">
+      <soap12:operation soapAction="jcmag22.hd.free.fr/Public/GetELORanking" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PublicServiceHttpGet" type="tns:PublicServiceHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="GetAllLeagues">
+      <http:operation location="/GetAllLeagues" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTeamsInLeague">
+      <http:operation location="/GetTeamsInLeague" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPlayersInLeague">
+      <http:operation location="/GetPlayersInLeague" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNbTeamsPerLeague">
+      <http:operation location="/GetNbTeamsPerLeague" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLeagueId">
+      <http:operation location="/GetLeagueId" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLeague">
+      <http:operation location="/GetLeague" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsLeagueSupported">
+      <http:operation location="/IsLeagueSupported" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMatchsByLeague">
+      <http:operation location="/GetMatchsByLeague" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetELORanking">
+      <http:operation location="/GetELORanking" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PublicServiceHttpPost" type="tns:PublicServiceHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="GetAllLeagues">
+      <http:operation location="/GetAllLeagues" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTeamsInLeague">
+      <http:operation location="/GetTeamsInLeague" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPlayersInLeague">
+      <http:operation location="/GetPlayersInLeague" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNbTeamsPerLeague">
+      <http:operation location="/GetNbTeamsPerLeague" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLeagueId">
+      <http:operation location="/GetLeagueId" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLeague">
+      <http:operation location="/GetLeague" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsLeagueSupported">
+      <http:operation location="/IsLeagueSupported" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMatchsByLeague">
+      <http:operation location="/GetMatchsByLeague" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetELORanking">
+      <http:operation location="/GetELORanking" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PublicService">
+    <wsdl:port name="PublicServiceSoap" binding="tns:PublicServiceSoap">
+      <soap:address location="http://94.23.239.117/BloodBowlManager.WebService.Public/PublicService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="PublicServiceSoap12" binding="tns:PublicServiceSoap12">
+      <soap12:address location="http://94.23.239.117/BloodBowlManager.WebService.Public/PublicService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="PublicServiceHttpGet" binding="tns:PublicServiceHttpGet">
+      <http:address location="http://94.23.239.117/BloodBowlManager.WebService.Public/PublicService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="PublicServiceHttpPost" binding="tns:PublicServiceHttpPost">
+      <http:address location="http://94.23.239.117/BloodBowlManager.WebService.Public/PublicService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
